@@ -17,13 +17,14 @@ contract FYTE is ERC20, Ownable, PaymentSplitter {
     uint256 public FYTECost = 10 ether;
     mapping(address => uint256) public claimChecker;
 
-    constructor(address[] memory _payees, uint256[] memory _shares)
-        ERC20("FYTE", "FYTE")
-        PaymentSplitter(_payees, _shares)
-        Ownable()
-    {
-        V1Address = address(0x01);
-        V2Address = address(0x02);
+    constructor(
+        address[] memory _payees,
+        uint256[] memory _shares,
+        address _V1Address,
+        address _V2Address
+    ) ERC20("FYTE", "FYTE") PaymentSplitter(_payees, _shares) Ownable() {
+        V1Address = _V1Address;
+        V2Address = _V2Address;
         V1ClaimAmount = 10;
         V2ClaimAmount = 5;
     }
